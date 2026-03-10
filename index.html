@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyBook - Flight Booking Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+<h1>✈ SkyBook</h1>
+<nav>
+<a href="#">Flights</a>
+<a href="#">Bookings</a>
+<a href="#">Support</a>
+</nav>
+</header>
+
+<section class="search-box">
+<h2>Search Flights</h2>
+<input type="text" id="from" placeholder="From">
+<input type="text" id="to" placeholder="To">
+<input type="date" id="date">
+<button onclick="searchFlights()">Search</button>
+</section>
+
+<section class="filters">
+<h3>Filters</h3>
+<label>Max Price: <span id="priceVal">15000</span></label>
+<input type="range" id="priceFilter" min="2000" max="15000" value="15000" oninput="updatePrice(this.value)">
+<select id="airlineFilter" onchange="filterFlights()">
+<option value="all">All Airlines</option>
+<option value="Indigo">Indigo</option>
+<option value="Air India">Air India</option>
+<option value="SpiceJet">SpiceJet</option>
+</select>
+</section>
+
+<section id="results" class="results"></section>
+
+<script src="script.js"></script>
+</body>
+</html>
