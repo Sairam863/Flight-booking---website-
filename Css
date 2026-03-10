@@ -1,0 +1,99 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: #f5f7fa;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: #007bff;
+  color: white;
+}
+
+header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+.banner {
+  background: url('images/banner.jpg') center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.banner h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+.search-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.search-section input, .search-section button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.flights-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.flight-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  width: 300px;
+  padding: 15px;
+}
+
+.flight-card img {
+  width: 50px;
+  height: auto;
+}
+
+.flight-card h3 {
+  margin: 10px 0;
+}
+
+.flight-card p {
+  margin: 5px 0;
+}
