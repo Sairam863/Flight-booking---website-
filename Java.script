@@ -1,0 +1,58 @@
+const flightApi = "http://localhost:8080/flights";
+const bookingApi = "http://localhost:8080/bookings";
+
+const searchForm = document.getElementById("searchForm");
+const bookingForm = document.getElementById("bookingForm");
+const flightResults = document.getElementById("flightResults");
+const bookingResults = document.getElementById("bookingResults");
+const flightSelect = document.getElementById("flightSelect");
+
+async function loadFlights() {
+    const res = await fetch(flightApi);
+    const flights = await res.json();
+    flightSelect.innerHTML = "";
+    flights.forEach(f => {
+        const option = document.createElement("option");
+        option.value = f.id;
+        option.text = `${f.flightNumber} | ${f.origin} → ${f.destination}`;
+        flightSelect.appendChild(option);
+    });
+}
+
+searchForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const origin = document.getElementById("origin").value;
+    const destination = document.getElementById("destination").value;
+    const res = await fetch(flightApi);
+    const flights = await res.json();
+    flightResults.innerHTML = "";
+    flights.filter(f => f.origin.toLowerCase().includes(origin.toLowerCase()) &&
+                        f.destination.toLowerCase().includes(destination.toLowerCase()))
+           .forEach(f => {
+                const li = document.createElement("li");
+                li.textContent = `${f.flightNumber} | ${f.origin} → ${f.destination} | ${f.departureTime}`;
+                flightResults.appendChild(li);
+           });
+});
+
+bookingForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const passengerName = document.getElementById("passengerName").value;
+    const email = document.getElementById("email").value;
+    const flightId = flightSelect.value;
+
+    const res = await fetch(bookingApi, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            passengerName,
+            email,
+            flight: { id: flightId }
+        })
+    });
+    const booking = await res.json();
+    bookingResults.innerHTML += `<li>${booking.passengerName} booked flight ID ${booking.flight.id}</li>`;
+    bookingForm.reset();
+});
+
+loadFlights();
